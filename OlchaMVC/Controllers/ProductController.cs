@@ -52,13 +52,13 @@ namespace OlchaMVC.Controllers
         public IActionResult Edit(int id)
         {
             ProductViewModel model = new ProductViewModel();
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/product/"+id).Result;
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/product/" + id).Result;
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<ProductViewModel>(data);
             }
-            return View("Create", model);
+            return View(model);
         }
 
         [HttpPost]
@@ -66,12 +66,12 @@ namespace OlchaMVC.Controllers
         {
             string data = JsonConvert.SerializeObject(model);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = client.PutAsync(client.BaseAddress + "/product/" + model.Id, content).Result;
+            HttpResponseMessage response = client.PutAsync(client.BaseAddress + "/product/", content).Result;
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            return View("Create", model);
+            return View(model);
         }
 
         /*DELETE PRODUCT*/
