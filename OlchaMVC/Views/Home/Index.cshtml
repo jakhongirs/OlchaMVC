@@ -1,0 +1,32 @@
+﻿@using System.Data
+@model DataTable
+
+@{
+    ViewData["Title"] = "Fetching Data from OlchaApi AWS";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayName("id")</th>
+        
+            <th>@Html.DisplayName("name")</th>
+        
+            <th>@Html.DisplayName("description")</th>
+        
+            <th>@Html.DisplayName("price")</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["id"]</td>
+                <td>@row["name"]</td>
+                <td>@row["description"]</td>
+                <td>@row["price"]</td>
+            </tr>
+        }
+    </tbody>
+</table>
